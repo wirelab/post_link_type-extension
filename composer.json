@@ -1,0 +1,31 @@
+{
+    "name": "wirelab/post_link_type-extension",
+    "type": "streams-addon",
+    "description": "A post link type for the Navigation module.",
+    "keywords": [
+        "streams",
+        "link type",
+        "posts",
+        "wirelab",
+        "pyrocms",
+        "pyrocms 3"
+    ],
+    "homepage": "http://wirelab.nl",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Wirelab",
+            "email": "algemeen@wirelab.nl",
+            "homepage": "http://www.wirelab.nl",
+            "role": "Owner"
+        }
+    ],
+    "support": {
+        "email": "algemeen@wirelab.nl"
+    },
+    "autoload": {
+        "psr-4": {
+            "Wirelab\\PostLinkTypeExtension\\": "src/"
+        }
+    }
+}
