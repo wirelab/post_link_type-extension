@@ -4,6 +4,7 @@ use Anomaly\NavigationModule\Link\Contract\LinkInterface;
 use Anomaly\NavigationModule\Link\Type\Contract\LinkTypeInterface;
 use Anomaly\NavigationModule\Link\Type\LinkTypeExtension;
 use Wirelab\PostLinkTypeExtension\Form\PostLinkTypeFormBuilder;
+use Anomaly\SettingsModule\Setting\Contract\SettingRepositoryInterface;
 
 class PostLinkTypeExtension extends LinkTypeExtension implements LinkTypeInterface
 {
@@ -23,14 +24,17 @@ class PostLinkTypeExtension extends LinkTypeExtension implements LinkTypeInterfa
 
     public function url(LinkInterface $link)
     {
+      $config = app(SettingRepositoryInterface::class);
       $entry = $link->getEntry();
 
       if(!$post = $entry->getPost()) {
         return url('');
       }
 
-      #TODO use routes?
-      return url('posts/'.$post->getSlug());
+      $template = $config->value('wirelab.extension.post_link_type::url_template');
+      $template = str_replace('{slug}', $post->getSlug(), $template);
+
+      return url($template);
     }
 
     public function title(LinkInterface $link)
